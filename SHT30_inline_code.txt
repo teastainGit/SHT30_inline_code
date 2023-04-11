@@ -1,0 +1,15 @@
+//insert this code snippet inline with your loop
+  Wire.beginTransmission(0x44);  //0x44 for M5Stack ENV  (0x45 is DFRobot)
+  Wire.write(0x2C);              //show all the "wheels and gears"
+  Wire.write(0x06);
+  Wire.endTransmission();
+  delay(50);
+  Wire.requestFrom(0x44, 6);
+  data[0] = Wire.read();
+  data[1] = Wire.read();
+  data[2] = Wire.read();
+  data[3] = Wire.read();
+  data[4] = Wire.read();
+  data[5] = Wire.read();
+  tempC = ((((data[0] * 256.0) + data[1]) * 175) / 65535.0) - 45;
+  humidity = ((((data[3] * 256.0) + data[4]) * 100) / 65535.0);

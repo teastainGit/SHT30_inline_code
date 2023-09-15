@@ -1,3 +1,12 @@
+//declare these:
+ #include <Wire.h>
+ unsigned int data[6];
+ float tempC;
+ float humidity;
+
+// in setup start this:
+ Wire.begin();
+
 //insert this code snippet inline with your loop
   Wire.beginTransmission(0x44);  //0x44 for M5Stack ENV  (0x45 is DFRobot)
   Wire.write(0x2C);              //show all the "wheels and gears"
